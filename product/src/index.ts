@@ -1,14 +1,13 @@
-import express from 'express';
+// Dotenv 
+import dotenv from 'dotenv'
+dotenv.config();
 
-const app = express();
+import './helpers/init_mongodb'
+import app from './app';
 
-const port = 8080;
 
-app.get('/', (req,res) => {
-    res.send('Hello')
-})
+const PORT: string = process.env.PORT || "5000";
 
-app.listen(port, () => {
-    console.log(`Server on ${port}`);
-    
+app.listen(PORT, () => {
+    console.log(`Server runing on ${PORT}`);
 })

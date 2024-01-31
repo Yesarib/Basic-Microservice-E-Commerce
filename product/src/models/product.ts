@@ -1,7 +1,7 @@
 import { Schema, model, Types} from 'mongoose';
 
 
-interface Product {
+export interface IProduct {
     name: string
     desc: string
     code: string
@@ -9,14 +9,14 @@ interface Product {
     category: Types.ObjectId
 }
 
-const productSchema = new Schema<Product>({
+const productSchema = new Schema<IProduct>({
     name: { type: String, required:true},
     desc: { type: String, required:true},
     code: { type: String, required:true},
     price: { type: Number, required:true},
-    category: { type: Schema.Types.ObjectId, ref: 'Category', required: true }, 
+    category: { type: Schema.Types.ObjectId, ref: 'Category', }, 
 });
 
-const ProductModel = model<Product>('Product', productSchema);
+const ProductModel = model<IProduct>('Product', productSchema);
 
 export default ProductModel;
