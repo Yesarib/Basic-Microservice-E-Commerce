@@ -1,13 +1,13 @@
 import { Schema, model} from 'mongoose';
 
-interface Category{
+export interface ICategory{
     name: string
     
 }
-const categorySchema = new Schema<Category>({
+const categorySchema = new Schema<ICategory>({
     name: { type: String, required: true },
 });
 
-const CategoryModel = model<Category>('Category', categorySchema);
+const CategoryModel = model<ICategory>('Category', categorySchema);
 
 export default CategoryModel;

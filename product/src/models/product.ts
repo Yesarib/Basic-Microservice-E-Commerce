@@ -6,7 +6,7 @@ export interface IProduct {
     desc: string
     code: string
     price: number
-    category: Types.ObjectId
+    category: [Types.ObjectId]
 }
 
 const productSchema = new Schema<IProduct>({
@@ -14,7 +14,7 @@ const productSchema = new Schema<IProduct>({
     desc: { type: String, required:true},
     code: { type: String, required:true},
     price: { type: Number, required:true},
-    category: { type: Schema.Types.ObjectId, ref: 'Category', }, 
+    category: [{ type: Schema.Types.ObjectId, ref: 'Category', }], 
 });
 
 const ProductModel = model<IProduct>('Product', productSchema);

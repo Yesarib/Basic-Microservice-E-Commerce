@@ -1,7 +1,7 @@
 import { Schema, model, Document} from 'mongoose';
 import * as bcrypt from 'bcrypt';
 
-interface User extends Document{
+export interface User extends Document{
     firstName: string;
     lastName: string;
     email: string;
