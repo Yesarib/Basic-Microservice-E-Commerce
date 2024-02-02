@@ -1,3 +1,5 @@
+
+
 export const typeDefs =  `#graphql
     type Product {
         id: ID!,
@@ -28,6 +30,20 @@ export const typeDefs =  `#graphql
         products: [Product],
         product(id:ID!): Product
         users: [User]
+        productsByCategory(categoryId: ID!): [Product]
+
+    }
+
+    input PostProduct{
+        name: String!,
+        desc: String!,
+        code: String!,
+        price: Int!,
+        category: [ID!]
+    }
+
+    type Mutation {
+        addProduct(product: PostProduct): Product
     }
 
 `
