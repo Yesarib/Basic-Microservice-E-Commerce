@@ -1,0 +1,8 @@
+version: '3.4'
+services:
+  product:
+    container_name: e-commerce-product
+    build: .
+    ports:
+      - 8080:8080
+    
