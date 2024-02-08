@@ -15,7 +15,7 @@ const userSchema = new Schema<User>({
     lastName: { type:String, required:true},
     email: { type:String, required:true},
     password: { type:String, required:true},
-    profileImage: { type:String, required:true},
+    profileImage: { type:String,},
 })
 
 userSchema.pre('save', async function (next) {

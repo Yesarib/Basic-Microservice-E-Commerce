@@ -9,7 +9,7 @@ export interface IOrder {
 }
 
 export interface IOrderItems {
-    order_id: string,
+    order_id: number,
     product_id: string,
     quantity: number,
     unit_price: number,
@@ -17,10 +17,12 @@ export interface IOrderItems {
 }
 
 const addOrder = async(order:IOrder) => {
+    console.log(order);
+    
     const client = await pool.connect();
     const result = await client.query(
-    `INSERT INTO orders (${order.user_id}, ${order.order_date}, ${order.total_price}, ${order.order_status}, ) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,    
-    [order.user_id, order.order_date, order.total_price, order.order_status]);
+    `INSERT INTO orders (user_id, order_date, total_price, order_status ) VALUES ($1, TO_TIMESTAMP($2), $3, $4) RETURNING *`,    
+    [order.user_id, order.order_date.getTime(), order.total_price, order.order_status]);
     const newOrder = result.rows[0];
     client.release();
     return newOrder;
@@ -37,8 +39,9 @@ const getOrders = async():Promise<IOrder[]> => {
 const addOrderItems = async(order:IOrderItems) => {
     const client = await pool.connect();
     const result = await client.query(
-    `INSERT INTO orders (${order.order_id}, ${order.product_id}, ${order.quantity}, ${order.unit_price}, ${order.total_price} ) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,    
-    [order.order_id, order.product_id, order.quantity, order.unit_price, order.total_price]);
+        `INSERT INTO orderitems (order_id, product_id, quantity, unit_price, total_price) VALUES ($1, $2, $3, $4, $5) RETURNING *`,    
+        [order.order_id, order.product_id, order.quantity, order.unit_price, order.total_price]
+    );
     const newOrderItem = result.rows[0];
     client.release();
     return newOrderItem;
@@ -46,7 +49,7 @@ const addOrderItems = async(order:IOrderItems) => {
 
 const getOrderItems = async():Promise<IOrderItems[]> => {
     const client = await pool.connect();
-    const result = await client.query('SELECT * FROM ordersitems');
+    const result = await client.query('SELECT * FROM orderitems');
     const orders = result.rows;
 
     return orders;

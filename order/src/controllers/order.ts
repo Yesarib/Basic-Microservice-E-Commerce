@@ -2,11 +2,12 @@ import { RequestHandler } from "express";
 import orderService, { IOrder, IOrderItems } from "../services/order";
 
 
-export const addOrder:RequestHandler<unknown,IOrder,IOrder,unknown> = async(req,res,next) => {
+export const addOrder:RequestHandler<unknown,IOrder,Omit<IOrder, 'order_date'>,unknown> = async(req,res,next) => {
     try {
         // const { user_id, order_date, total_price, order_status } = req.body;
-        const order = req.body
-
+        const orderData = req.body; // Assuming req.body is of type Omit<IOrder, 'order_date'>
+        const order_date = new Date();
+        const order = { ...orderData, order_date};
         const response = await orderService.addOrder(order);
 
         res.status(200).json(response)

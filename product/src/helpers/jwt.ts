@@ -18,7 +18,7 @@ const tokenService = {
             const option = {
                 expiresIn: "1y",
                 issuer: 'pickurpage.com',
-                audience:userId,
+                audience: 'https://example.com',
             }
             JWT.sign(payload,secret,option, (err,token) => {
                 if(err) return reject(err)
@@ -57,7 +57,7 @@ const tokenService = {
             }
             const options = {
                 expiresIn: "1y",
-                issuer: "pickurpage.com",
+                issuer: 'https://example.com',
                 audience: userId
             }
             JWT.sign(payload,secret,options, (err, token) => {

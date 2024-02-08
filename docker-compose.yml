@@ -28,6 +28,23 @@ services:
     networks:
       - e-commerce_network
 
+  order:
+    container_name: e-commerce_order
+    build:
+      context: ./order
+      dockerfile: Dockerfile
+    ports:
+      - 8082:8082
+    networks:
+      - e-commerce_network
+    
+  postgre:
+    image: postgresql
+    ports:
+      - 5432:5432
+    networks:
+      - e-commerce_network
+
 
 networks:
   e-commerce_network:
