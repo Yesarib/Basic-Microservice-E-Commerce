@@ -38,12 +38,18 @@ services:
     networks:
       - e-commerce_network
     
-  postgre:
-    image: postgresql
+  postgres:
+    image: postgres
     ports:
       - 5432:5432
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=142536
+      - POSTGRES_DB=order
     networks:
       - e-commerce_network
+    volumes:
+    - ./order/order.sql:/docker-entrypoint-initdb.d/order.sql
 
 
 networks:

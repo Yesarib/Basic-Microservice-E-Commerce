@@ -19,7 +19,7 @@ export const addOrder:RequestHandler<unknown,IOrder,Omit<IOrder, 'order_date'>,u
 export const getOrders:RequestHandler<unknown, IOrder[], unknown,unknown> = async(req,res,next) => {
     try {
         const response = await orderService.getOrders();
-
+        
         res.status(200).json(response);
     } catch (error) {
         next(error)
