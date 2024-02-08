@@ -25,3 +25,14 @@ export const getUserCart:RequestHandler<{userId:string},Cart[],unknown,unknown> 
         next(error)
     }
 }
+
+export const deleteProductFromCart:RequestHandler<unknown,unknown, {userId:string, productId:string }, unknown> = async(req,res,next) => {
+    try {
+        const { userId, productId } = req.body;
+        
+        const result = await cartService.removeCartProduct(userId,productId);
+        res.status(200).json(result)
+    } catch (error) {
+        next(error)
+    }
+}
