@@ -67,3 +67,4 @@ The application consists of the following services:
 - Cart Service: localhost:8081
 - Order Service: localhost:8082
 
+![On Docker](docker-ss.png)
