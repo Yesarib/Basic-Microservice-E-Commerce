@@ -1,7 +1,10 @@
 # Basic Microservice Application: E-Commerce
 
-This project is a small e-commerce application developed to understand microservice architecture and Docker usage. There are three different services in the project, including basic features such as product management, cart operations and order management.  
+This project is a small e-commerce application developed to understand microservice architecture and Docker usage. There are three different services in the project, including basic features such as product management, cart operations and order management. An API gateway using NGINX is utilized to streamline incoming requests and direct them to the appropriate microservices.
 
+An NGINX server has been configured as an API gateway to manage incoming requests and route them to the respective microservices. This setup enhances scalability, simplifies request management, and facilitates future updates to the microservices architecture. The NGINX configuration ensures seamless communication between clients and the microservices.
+
+<br />
 The project includes these; Nodejs, MongoDB, Redis, PostgreSQL, Graphql
 
 The application consists of the following services:
@@ -66,5 +69,11 @@ The application consists of the following services:
 - Product Service: localhost:8080
 - Cart Service: localhost:8081
 - Order Service: localhost:8082
+
+
+<br />
+<br />
+<br />
+
 
 ![On Docker](docker-ss.png)
