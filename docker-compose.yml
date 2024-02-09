@@ -51,6 +51,14 @@ services:
     volumes:
     - ./order/order.sql:/docker-entrypoint-initdb.d/order.sql
 
+  nginx:
+    image: nginx
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+    networks:
+      - e-commerce_network
 
 networks:
   e-commerce_network:
